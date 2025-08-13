@@ -1,0 +1,311 @@
+<!-- <!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>🎯 Guess N Win Bot — Premium Neo-Brutal</title>
+  <style>
+    :root{
+      --bg: #F5F1E3;          /* warm ivory */
+      --ink: #1C1C1C;         /* deep charcoal */
+      --accent: #ccc7f4;      /* premium blue */
+      --accent-2: #FFBE0B;    /* gold */
+      --accent-3: #f0a5c5;    /* warm orange */
+      --card: #FFFFFF;        /* white card */
+      --border: #1C1C1C;      /* strong border */
+      --shadow: 8px 8px 0 var(--ink);
+      --radius: 14px;
+      --bw: 5px;
+    }
+    @media (prefers-color-scheme: dark){
+      :root{
+        --bg: #141414;
+        --ink: #F5F1E3;
+        --card: #1E1E1E;
+        --border: #F5F1E3;
+        --shadow: 8px 8px 0 rgba(245,241,227,0.9);
+      }
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: "Inter", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      background: var(--bg);
+      color: var(--ink);
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
+
+    .wrap{
+      width: min(920px, 100%);
+    }
+
+    .header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:18px 22px;
+      border:var(--bw) solid var(--border);
+      border-radius:var(--radius);
+      background:var(--card);
+      box-shadow:var(--shadow);
+    }
+    .brand{
+      display:flex;align-items:center;gap:14px;
+    }
+    .logo{
+      width:56px;height:56px;display:grid;place-items:center;
+      border:var(--bw) solid var(--border);
+      border-radius:10px;
+      background: var(--accent);
+      color:#fff;
+      font-size:28px;
+      font-weight: bold;
+      box-shadow: 4px 4px 0 var(--ink);
+    }
+    .title{
+      line-height:1.05;
+    }
+    .title h1{
+      margin:0;
+      font-size: clamp(28px, 4vw, 44px);
+      letter-spacing:-0.02em;
+    }
+    .title p{
+      margin:4px 0 0;
+      font-size:clamp(14px, 1.8vw, 16px);
+      opacity:.9;
+    }
+
+    .pill{
+      border:var(--bw) solid var(--border);
+      border-radius:999px;
+      padding:10px 16px;
+      background:var(--accent-2);
+      font-weight:700;
+      box-shadow: 4px 4px 0 var(--ink);
+      white-space:nowrap;
+    }
+
+    .grid{
+      margin-top:26px;
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:24px;
+    }
+    @media (max-width:820px){
+      .grid{grid-template-columns:1fr}
+    }
+
+    .card{
+      border:var(--bw) solid var(--border);
+      border-radius:var(--radius);
+      background:var(--card);
+      box-shadow:var(--shadow);
+      padding:22px;
+    }
+
+    .hero{
+      padding:26px;
+      display:grid;
+      gap:18px;
+      background: var(--card);
+    }
+    .hero h2{
+      margin:0;
+      font-size: clamp(22px, 3vw, 28px);
+    }
+    .hero p{
+      margin:0;
+      font-size: clamp(16px, 2.2vw, 18px);
+    }
+
+    .cta{
+      display:flex;flex-wrap:wrap;gap:12px;margin-top:8px;
+    }
+    .btn{
+      display:inline-flex;align-items:center;gap:10px;
+      text-decoration:none;
+      font-weight:800;
+      padding:14px 18px;
+      border:var(--bw) solid var(--border);
+      border-radius:12px;
+      background:var(--accent);
+      color:#fff;
+      transform: translate(0,0);
+      box-shadow: 6px 6px 0 var(--ink);
+      transition: transform .08s ease, box-shadow .08s ease;
+    }
+    .btn:hover{ transform: translate(-3px,-3px); box-shadow: 12px 12px 0 var(--ink); }
+    .btn:active{ transform: translate(0,0); box-shadow: 6px 6px 0 var(--ink); }
+
+    .btn.alt{ background:var(--accent-3); color:#fff; }
+
+    .info{
+      display:grid;gap:10px;font-size:16px;
+    }
+    .info .row{
+      display:flex;align-items:center;gap:12px;
+      border:var(--bw) dashed var(--border);
+      border-radius:12px;padding:12px 14px;
+      background: var(--bg);
+    }
+    .tag{
+      font-family: ui-monospace, monospace;
+      padding:6px 10px;
+      border:var(--bw) solid var(--border);
+      border-radius:8px;
+      background:#fff;
+      box-shadow: 3px 3px 0 var(--ink);
+      font-size:13px;
+    }
+
+    .foot{
+      margin-top:22px;text-align:center;font-size:12px;opacity:.8;
+    }
+    .kbd{
+      font-family: ui-monospace, monospace;
+      border:var(--bw) solid var(--border);
+      background:#fff;border-radius:8px;padding:2px 6px;
+      box-shadow: 2px 2px 0 var(--ink);
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header class="header">
+      <div class="brand">
+        <div class="logo">🎯</div>
+        <div class="title">
+          <h1>Guess N Win Bot</h1>
+          <p>Webhook mode is <strong>LIVE</strong> — let’s play.</p>
+        </div>
+      </div>
+      <div class="pill">Webhook: ON</div>
+    </header>
+
+    <section class="grid">
+      <article class="card hero">
+        <h2>Talk to the bot on Telegram</h2>
+        <p>Instant guesses, instant wins. Bring your luck (and maybe some skill).</p>
+        <div class="cta">
+          <a class="btn" href="https://t.me/GuessNWinBot" target="_blank" rel="noopener noreferrer">
+            <span>@GuessNWinBot</span> <span>↗</span>
+          </a>
+          <a class="btn alt" href="#" onclick="alert('📜 How to Play:\n1. Open the bot menu (📋) and tap /guess to make a guess.\n2. If you tap it quickly, it sends immediately with no number — this won\\'t work.\n3. To guess a number, long-press /guess in the menu → it will appear in the message box → type your number after it (e.g. /guess 42) → send.\n4. I’ll tell you if you’re too high, too low, or correct.\n5. You can play solo or in groups!');return false;">
+  <span>Quick Rules</span> <span>⚡</span>
+</a>
+        </div>
+      </article>
+
+      <aside class="card info">
+        <div class="row">
+          <span class="tag">MODE</span>
+          <span>Webhook</span>
+        </div>
+        <div class="row">
+          <span class="tag">STATUS</span>
+          <span>Running smoothly — all systems go.</span>
+        </div>
+        <div class="row">
+          <span class="tag">LINK</span>
+          <code class="kbd">@GuessNWinBot</code>
+        </div>
+        <div class="row">
+          <span class="tag">TIP</span>
+          <span>Bookmark this page or pin the chat for fast access.</span>
+        </div>
+      </aside>
+    </section>
+
+    <p class="foot">Built in premium neo-brutalist style — bold borders, rich colors, unapologetic shadows.</p>
+  </main>
+</body>
+</html>
+ -->
+
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>🎯 Guess N Win Bot</title>
+  <style>
+    :root {
+      --pink: #F0A5C5;
+      --lavender: #CCC7F4;
+      --light: #E8E8E8;
+      --ink: #1C1C1C;
+      --bw: 4px;
+      --radius: 12px;
+      --shadow: 6px 6px 0 var(--ink);
+    }
+
+    body {
+      margin: 0;
+      font-family: "Inter", sans-serif;
+      background: var(--light);
+      color: var(--ink);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .card {
+      background: white;
+      border: var(--bw) solid var(--ink);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 28px 36px;
+      text-align: center;
+      max-width: 420px;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 8px;
+    }
+
+    p {
+      font-size: 1rem;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 20px;
+      background: var(--pink);
+      border: var(--bw) solid var(--ink);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      text-decoration: none;
+      color: var(--ink);
+      font-weight: 700;
+      transition: transform .1s ease, box-shadow .1s ease;
+    }
+
+    .btn:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 9px 9px 0 var(--ink);
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+    <h1>🎯 Guess N Win</h1>
+    <p>Guess the secret number. I’ll tell you if you’re too high, too low, or correct — play solo or with friends on
+      Telegram.</p>
+    <a class="btn" href="https://t.me/GuessNWinBot" target="_blank">@GuessNWinBot</a>
+  </div>
+
+</body>
+
+</html>

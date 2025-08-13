@@ -16,7 +16,7 @@ app.use(express.json());
 
 // Webhook setup
 // Use Render's URL or your production URL
-const url = process.env.RENDER_EXTERNAL_URL || process.env.APP_URL; 
+const url = process.env.RENDER_EXTERNAL_URL || process.env.APP_URL;
 const port = process.env.PORT || 3000;
 
 // Tell Telegram where to send updates
@@ -26,6 +26,100 @@ bot.setWebHook(`${url}/bot${token}`);
 app.post(`/bot${token}`, (req, res) => {
     bot.processUpdate(req.body);
     res.sendStatus(200);
+});
+
+app.get('/', (req, res) => {
+    res.send(`
+            <!doctype html>
+            <html lang="en">
+            <head>
+            <meta charset="utf-8" />
+            <meta name="viewport" content="width=device-width,initial-scale=1" />
+            <title>🎯 Guess N Win Bot</title>
+            <style>
+            :root {
+            --pink: #F0A5C5;
+            --lavender: #CCC7F4;
+            --light: #E8E8E8;
+            --ink: #1C1C1C;
+            --bw: 4px;
+            --radius: 12px;
+            --shadow: 6px 6px 0 var(--ink);
+            }
+            body {
+            margin:0;
+            font-family: "Inter", sans-serif;
+            background: var(--light);
+            color: var(--ink);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            }
+            .card {
+            background: white;
+            border: var(--bw) solid var(--ink);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 28px 36px;
+            text-align: center;
+            max-width: 420px;
+            }
+            h1 {
+            font-size: 2rem;
+            margin-bottom: 8px;
+            }
+            p {
+            font-size: 1rem;
+            margin-bottom: 20px;
+            }
+            .btn {
+            display: inline-block;
+            padding: 14px 20px;
+            background: var(--pink);
+            border: var(--bw) solid var(--ink);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            text-decoration: none;
+            color: var(--ink);
+            font-weight: 700;
+            transition: transform .1s ease, box-shadow .1s ease;
+            }
+            .btn:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 9px 9px 0 var(--ink);
+            }
+            .footer {
+            margin-top: 20px;
+            font-size: 0.8rem;
+            opacity: 0.8;
+            }
+            .footer a {
+            color: var(--ink);
+            text-decoration: none;
+            border-bottom: 1px dashed var(--ink);
+            }
+            .footer a:hover {
+            opacity: 1;
+            }
+            </style>
+            </head>
+            <body>
+
+            <div class="card">
+            <h1>🎯 Guess N Win</h1>
+            <p>Guess the secret number. I’ll tell you if you’re too high, too low, or correct — play solo or with friends on Telegram.</p>
+            <a class="btn" href="https://t.me/GuessNWinBot" target="_blank">@GuessNWinBot</a>
+            </div>
+
+            <div class="footer">
+            Made with ❤️ by <a href="https://heymark.vercel.app" target="_blank">MARK</a>
+            </div>
+
+            </body>
+            </html>
+        `);
 });
 
 // Start the server
