@@ -1,3 +1,4 @@
+const express = require('express');
 const TelegramBot = require("node-telegram-bot-api");
 const sqlite3 = require("sqlite3").verbose();
 const fs = require("fs");
@@ -8,7 +9,30 @@ const langData = JSON.parse(fs.readFileSync("./lang.json", "utf8"));
 
 // Bot token
 const token = process.env.YOUR_BOT_TOKEN;
-const bot = new TelegramBot(token, { polling: true });
+const bot = new TelegramBot(token, { polling: false });
+
+const app = express();
+app.use(express.json());
+
+// Webhook setup
+// Use Render's URL or your production URL
+const url = process.env.RENDER_EXTERNAL_URL || process.env.APP_URL; 
+const port = process.env.PORT || 3000;
+
+// Tell Telegram where to send updates
+bot.setWebHook(`${url}/bot${token}`);
+
+// This endpoint will receive updates from Telegram
+app.post(`/bot${token}`, (req, res) => {
+    bot.processUpdate(req.body);
+    res.sendStatus(200);
+});
+
+// Start the server
+app.listen(port, () => {
+    console.log(`Bot server running on port ${port}`);
+});
+
 
 // Set commands
 bot.setMyCommands([
